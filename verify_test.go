@@ -14,7 +14,7 @@ func TestVerifyFalse_1(t *testing.T) {
 
 func TestVerifyTrue_1(t *testing.T) {
 	want := true
-	msg := Verify("A123456789")
+	msg := Verify("a123456789")
 	if msg != want {
 		t.Fatalf("Error")
 	}
@@ -22,7 +22,7 @@ func TestVerifyTrue_1(t *testing.T) {
 
 func TestVerifyFalse_2(t *testing.T) {
 	want := true
-	msg := Verify("A123456788")
+	msg := Verify("a123456788")
 	if msg != want {
 		t.Fatalf("Error")
 	}
