@@ -27,3 +27,19 @@ func TestVerifyFalse_2(t *testing.T) {
 		t.Fatalf("Error")
 	}
 }
+
+func TestVerifyFalse_3(t *testing.T) {
+	want := false
+	msg := Verify("a1234,5678")
+	if msg != want {
+		t.Fatalf("Error")
+	}
+}
+
+func TestVerifyFalse_4(t *testing.T) {
+	want := false
+	msg := Verify("a12/u2014")
+	if msg != want {
+		t.Fatalf("Error")
+	}
+}
