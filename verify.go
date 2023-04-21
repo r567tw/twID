@@ -22,6 +22,7 @@ func Verify(IDNumber string) bool {
 
 // 需不需要再輸入時幫忙轉開頭大寫, verify 給個預設值這樣 如果他要求一定要大寫則就直接送 如果沒有則幫他轉一轉就可以
 //  #將i轉為首字母大寫，其餘字母小寫
+// Ref: https://steam.oxxostudio.tw/category/python/example/id-number-check.html
 // i=i.capitalize()
 // if not re.match('^[A-Z][12][0-9]{8}$',i):
 // 	return '此身分證格式不正確,需為0-9,A-Z的字串'
