@@ -1,4 +1,4 @@
-package twID
+package twID // Package twID provides a function to verify Taiwanese ID numbers.
 
 import (
 	"fmt"
@@ -13,6 +13,9 @@ var local_table = map[string]string{
 	"S": "26", "T": "27", "U": "28", "V": "29", "W": "32", "X": "30", "Y": "31", "Z": "33",
 }
 
+// Package twID provides a function to verify Taiwanese ID numbers.
+// Verify checks if a Taiwanese ID number is valid or not.
+// Returns true if the ID number is valid, otherwise false.
 func Verify(IDNumber string) bool {
 	id := strings.ToUpper(IDNumber)
 
@@ -26,17 +29,21 @@ func Verify(IDNumber string) bool {
 	if !match {
 		return false
 	}
+
 	numbers := strings.Split(id, "")
+	// Convert the first letter of the ID number to its corresponding number.
 	new_id := strings.Replace(id, numbers[0], local_table[numbers[0]], 1)
 
 	numbers = strings.Split(new_id, "")
 	intNumbers := []int{}
 
+	// Convert the ID number to an array of integers.
 	for _, str := range numbers {
 		i, _ := strconv.Atoi(str)
 		intNumbers = append(intNumbers, i)
 	}
 
+	// Check if the checksum is correct.
 	result := 0
 	result += intNumbers[0]
 
