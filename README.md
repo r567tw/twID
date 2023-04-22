@@ -1,4 +1,5 @@
 # twID
+[![Go Reference](https://pkg.go.dev/badge/github.com/r567tw/twID.svg)](https://pkg.go.dev/github.com/r567tw/twID)
 
 The `twID` package provides a function for verifying Taiwan national identification numbers. This is useful for validating the format and checksum of the ID number.
 

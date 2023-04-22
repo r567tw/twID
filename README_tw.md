@@ -1,4 +1,6 @@
 # twID
+[![Go Reference](https://pkg.go.dev/badge/github.com/r567tw/twID.svg)](https://pkg.go.dev/github.com/r567tw/twID)
+
 twID package 提供了一個驗證台灣身分證字號的功能。這個功能可以檢查身分證字號的格式和 checksum 是否正確。
 
 ## 安裝
