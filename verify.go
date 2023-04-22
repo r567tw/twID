@@ -30,8 +30,8 @@ func Verify(IDNumber string) bool {
 		return false
 	}
 
-	numbers := strings.Split(id, "")
 	// Convert the first letter of the ID number to its corresponding number.
+	numbers := strings.Split(id, "")
 	new_id := strings.Replace(id, numbers[0], local_table[numbers[0]], 1)
 
 	numbers = strings.Split(new_id, "")
