@@ -27,3 +27,11 @@ func TestVerifyFalse_CheckNumErr(t *testing.T) {
 		t.Fatalf("Error")
 	}
 }
+
+func TestVerifyFalse_OtherLanguageErr(t *testing.T) {
+	want := false
+	msg := Verify("輸入中文不行的")
+	if msg != want {
+		t.Fatalf("Error")
+	}
+}
