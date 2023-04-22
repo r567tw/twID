@@ -3,37 +3,48 @@ package twID
 import (
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
-func Verify(IDNumber string) bool {
-	taiwanIDNumber := strings.Title(IDNumber)
+var local_table = map[string]string{
+	"A": "10", "B": "11", "C": "12", "D": "13", "E": "14", "F": "15", "G": "16", "H": "17", "I": "34",
+	"J": "18", "K": "19", "L": "20", "M": "21", "N": "22", "O": "35", "P": "23", "Q": "24", "R": "25",
+	"S": "26", "T": "27", "U": "28", "V": "29", "W": "32", "X": "30", "Y": "31", "Z": "33",
+}
 
-	match, err := regexp.MatchString("^[A-Z][12][0-9]{8}$", taiwanIDNumber)
+func Verify(IDNumber string) bool {
+	id := strings.ToUpper(IDNumber)
+
+	match, err := regexp.MatchString("^[A-Z][1289][0-9]{8}$", id)
 
 	if err != nil {
 		fmt.Println(err)
 		panic("Verify ERROR")
 	}
 
-	fmt.Println(taiwanIDNumber)
-	return match
+	if !match {
+		return false
+	}
+	numbers := strings.Split(id, "")
+	new_id := strings.Replace(id, numbers[0], local_table[numbers[0]], 1)
+
+	numbers = strings.Split(new_id, "")
+	intNumbers := []int{}
+
+	for _, str := range numbers {
+		i, _ := strconv.Atoi(str)
+		intNumbers = append(intNumbers, i)
+	}
+
+	result := 0
+	result += intNumbers[0]
+
+	for x := 0; x < 9; x++ {
+		result += intNumbers[x+1] * (9 - x)
+	}
+
+	result += intNumbers[10]
+
+	return result%10 == 0
 }
-
-// 需不需要再輸入時幫忙轉開頭大寫, verify 給個預設值這樣 如果他要求一定要大寫則就直接送 如果沒有則幫他轉一轉就可以
-//  #將i轉為首字母大寫，其餘字母小寫
-// Ref: https://steam.oxxostudio.tw/category/python/example/id-number-check.html
-// i=i.capitalize()
-// if not re.match('^[A-Z][12][0-9]{8}$',i):
-// 	return '此身分證格式不正確,需為0-9,A-Z的字串'
-// else:
-// 	a=[]
-// 	a.extend('10987654932210898765431320')
-// 	c=int(a[ord(i[0])-65])+int(i[9])
-// 	for x in range(1,9):
-// 		c+=int(i[x])*(9-x)
-
-// 	if c%10!=0:
-// 		return '此身分證格式不正確,不通過驗證'
-// 	else:
-// 		return  '此身分證格式正確'
